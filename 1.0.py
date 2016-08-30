@@ -16,6 +16,7 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from multiprocessing import Pool, Process, Manager
+from misc_prepare_pbs import *
 #from bsub import bsub
 from mytools import *
 try:
@@ -115,6 +116,7 @@ def unique_fasta(prj_folder):
 
 def main():
 	print "Begin!"
+
 	#'''
 	print "Merging..."
 	infiles = glob.glob("%s/*.fastq"%(prj_tree.origin))
@@ -128,8 +130,6 @@ def main():
 	#'''
 	print "Quality contorl..."
 	infiles = glob.glob("%s/*.assembled.fastq"%(prj_tree.origin))
-	if len(infiles) != 2:
-		print "The %s be loaded in error, are they two?"%infiles
 	trim_files, bad_list = [], []
 	for the_file in infiles:
 		trim_fastq_by_quality(the_file,prj_folder,bad_list)

@@ -1,0 +1,8 @@
+
+*.fastq
+
+*.sh
+
+*.fasta
+
+*.txt
