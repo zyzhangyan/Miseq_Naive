@@ -92,7 +92,7 @@ def prepare_justfy_primer_and_group_pbs(prj_name, prj_tree, pickle_file):
 	handle.write("python ./2.1-justfy-primer-and-group.py -i %s &"%(pickle_file))
 	handle.close()
 def prepare_clustal_jobs_normal(prj_name, prj_tree, UMI_length, group_type):
-	clustal_fastas = glob.glob("%s/%s_*_cut_berfore_UMI_%s_%s.fasta"%(prj_tree.clustal_fasta, prj_name, UMI_length, group_type))
+	clustal_fastas = glob.glob("%s/%s_*_cut_berfore_UMI%s_%s.fasta"%(prj_tree.clustal_fasta, prj_name, UMI_length, group_type))
 	for infile in clustal_fastas:
 		head, tail 	= os.path.splitext(infile)
 		fname		= head.split("/")[-1]
