@@ -24,7 +24,20 @@ try:
 except ImportError:
     import pickle
 
-
+### -- BEGIN -- Change fastq file ID
+def change_id(prj_folder,ORG_FOLDER,prj_name):
+	print 'Changing ID'
+ 	flag, counts  = 0, 0
+	fastq = csv.reader(open(glob.glob('%s/%s/*.fastq'%(prj_folder,ORG_FOLDER))[0]), delimiter = '\t')
+	fq = csv.writer(open('%s/%s/%s.fq'%(prj_folder,ORG_FOLDER,prj_name),'w'),delimiter = '\t')
+	for index,line in enumerate(fastq):
+		if int(index) % 4 == 0:
+			flag += 1
+			fq.writerow(['@'+str(flag)])
+		else:
+			fq.writerow(line)
+			print flag
+### --END -- Change fastq file ID
 
 def batch_iterator(iterator, batch_size) :
     """Returns lists of length batch_size.
